@@ -1,10 +1,8 @@
 # Scoping Solar Landing Page
 
-Static landing page for Scoping Solar.
+Static public landing page for `www.scopingsolar.com`.
 
-This is separate from the beta app hosted at:
-
-https://app.scopingsolar.com
+The hosted beta app lives separately at `app.scopingsolar.com` and should be protected by Cloudflare Access. Public visitors should not be able to open the beta app directly from this page.
 
 ## Project Type
 
@@ -15,6 +13,8 @@ Plain static site:
 - `app.js`
 - `_headers`
 - `README.md`
+- `scoping_solar_icon.png`
+- `scoping_solar_logo.png`
 
 No React, Next.js, npm, or build step is required.
 
@@ -31,29 +31,53 @@ Use these settings:
 - Framework preset: `None`
 - Build command: leave blank
 - Build output directory: `/`
-- Production branch: `main`
+- Custom domain: `www.scopingsolar.com`
 
-## Custom Domain
+## Root Domain Redirect
 
-Attach the Pages project to:
+Use `www.scopingsolar.com` as the canonical public website.
 
-`www.scopingsolar.com`
+Create a Cloudflare Redirect Rule:
 
-Recommended later setup:
+1. Open the `scopingsolar.com` zone in Cloudflare.
+2. Go to `Rules` -> `Redirect Rules`.
+3. Create a wildcard URL redirect.
+4. Request URL: `https://scopingsolar.com/*`
+5. Target URL: `https://www.scopingsolar.com/${1}`
+6. Status code: `301`
+7. Enable preserve query string.
+8. Deploy the rule.
 
-- `www.scopingsolar.com` -> landing page
-- `scopingsolar.com` -> redirect to `www.scopingsolar.com`
-- `app.scopingsolar.com` -> beta app
-- `api.scopingsolar.com` -> future backend/API if needed
-- `docs.scopingsolar.com` -> future help docs
+Also make sure both hostnames exist in Cloudflare:
 
-## Current Beta Links
+- `www.scopingsolar.com` attached to the landing page Pages project.
+- `scopingsolar.com` proxied through Cloudflare so the redirect rule can run.
 
-The landing page currently uses mailto links for access requests and contact:
+## Beta App Lockdown
+
+Protect `app.scopingsolar.com/*` with Cloudflare Access and allow only the owner/admin email while the product is in private beta.
+
+Recommended owner/admin email:
 
 `BlakeParkison@outlook.com`
 
-Replace these later with a secure form endpoint or backend lead-capture flow.
+The landing page does not grant app access after someone submits the request form.
+
+## Request Access Form
+
+The form currently:
+
+- collects name, company, email, role/interest, and message
+- stores a copy in this browser's `localStorage` as a placeholder
+- opens a `mailto:` email to `BlakeParkison@outlook.com`
+
+This is not a real backend. Replace it later with:
+
+- secure API endpoint
+- request-access database table
+- admin approval workflow
+- email notification
+- audit history for approved/rejected testers
 
 ## Security Headers
 

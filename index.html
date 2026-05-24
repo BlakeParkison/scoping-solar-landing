@@ -9,6 +9,9 @@
     content="Scoping Solar is a beta-stage solar and battery scoping app for cleaner sales, survey, and design project intake."
   />
   <title>Scoping Solar | Solar and Battery Scoping</title>
+  <link rel="canonical" href="https://www.scopingsolar.com/" />
+  <link rel="icon" href="scoping_solar_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="scoping_solar_icon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -17,13 +20,13 @@
   <header class="site-header" aria-label="Site header">
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Scoping Solar home">
-        <span class="brand-mark" aria-hidden="true">SS</span>
+        <img class="brand-mark" src="scoping_solar_icon.png" alt="" aria-hidden="true" />
         <span>Scoping Solar</span>
       </a>
       <div class="nav-actions">
         <a href="#features">Features</a>
         <a href="#coming-soon">Roadmap</a>
-        <a class="nav-cta" href="https://app.scopingsolar.com">Open Beta App</a>
+        <a class="nav-cta" href="#request-access" data-scroll>Request Access</a>
       </div>
     </nav>
   </header>
@@ -41,9 +44,9 @@
           electrical, PV, ESS, and tie-in information before design begins.
         </p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button primary" href="https://app.scopingsolar.com">Open Beta App</a>
-          <a class="button secondary" href="mailto:BlakeParkison@outlook.com?subject=Scoping%20Solar%20Beta%20Access">Request Beta Access</a>
+          <a class="button primary" href="#request-access" data-scroll>Request Beta Access</a>
           <a class="button quiet" href="#features" data-scroll>View What It Does</a>
+          <a class="button secondary" href="mailto:BlakeParkison@outlook.com?subject=Scoping%20Solar%20Contact">Contact</a>
         </div>
       </div>
     </section>
@@ -66,13 +69,12 @@
         </div>
         <div class="text-stack">
           <p>
-            The beta app is available separately at app.scopingsolar.com for early workflow testing.
-            It is intended to validate the structure, field language, and project intake logic before
-            the larger account, sync, and download systems are released.
+            The beta app is currently restricted to the owner/admin while the workflow, field language,
+            project intake logic, and equipment data structure are being tested.
           </p>
           <p>
-            Full web access, mobile access, saved projects, team accounts, and cloud syncing are
-            coming soon.
+            Full web access, mobile access, downloadable app access, saved projects, team accounts,
+            and cloud syncing are coming soon.
           </p>
         </div>
       </div>
@@ -180,7 +182,7 @@
         <div class="roadmap-list">
           <div class="roadmap-item">
             <span>Access</span>
-            <p>Full web access and controlled beta invitations.</p>
+            <p>Controlled beta invitations with owner/admin approval before app access is granted.</p>
           </div>
           <div class="roadmap-item">
             <span>Mobile</span>
@@ -194,7 +196,7 @@
       </div>
     </section>
 
-    <section id="contact" class="cta-section" aria-labelledby="cta-title">
+    <section id="request-access" class="cta-section" aria-labelledby="cta-title">
       <div class="section-inner cta-layout">
         <div>
           <p class="section-kicker">Get involved</p>
@@ -204,11 +206,42 @@
             Scoping Solar is being built with your day-to-day workflow in mind.
           </p>
         </div>
-        <div class="cta-actions">
-          <!-- Future backend integration: replace mailto links with a secure beta request form/API. -->
-          <a class="button primary" href="mailto:BlakeParkison@outlook.com?subject=Scoping%20Solar%20Beta%20Access">Request Beta Access</a>
-          <a class="button secondary" href="mailto:BlakeParkison@outlook.com?subject=Scoping%20Solar%20Contact">Contact</a>
-        </div>
+        <!-- TODO: Replace this mailto/local placeholder with a secure backend form endpoint and admin approval workflow. -->
+        <form id="accessRequestForm" class="access-form" novalidate>
+          <label>
+            <span>Name</span>
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Company</span>
+            <input name="company" type="text" autocomplete="organization" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Role / Interest</span>
+            <select name="role" required>
+              <option value="">Select one</option>
+              <option>Solar sales</option>
+              <option>Site survey</option>
+              <option>Design / engineering</option>
+              <option>Operations / management</option>
+              <option>Installer / EPC</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="full">
+            <span>Short message</span>
+            <textarea name="message" rows="4" placeholder="Tell me what kind of workflow you want to test."></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Request Beta Access</button>
+            <a class="button secondary" href="mailto:BlakeParkison@outlook.com?subject=Scoping%20Solar%20Contact">Contact</a>
+          </div>
+          <p id="accessFormStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>

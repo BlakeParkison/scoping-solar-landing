@@ -1,6 +1,7 @@
 const canvas = document.getElementById("heroCanvas");
 const context = canvas.getContext("2d");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ACCESS_REQUEST_STORAGE = "scopingSolarAccessRequestsV1";
 
 function sizeCanvas() {
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -88,7 +89,70 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
   });
 });
 
-// Future backend integration: replace mailto CTAs with a validated beta-access form and API endpoint.
+function savedAccessRequests() {
+  try {
+    return JSON.parse(localStorage.getItem(ACCESS_REQUEST_STORAGE)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveAccessRequest(request) {
+  const requests = savedAccessRequests();
+  requests.unshift(request);
+  localStorage.setItem(ACCESS_REQUEST_STORAGE, JSON.stringify(requests.slice(0, 50)));
+}
+
+function betaRequestMailto(request) {
+  const body = [
+    "New Scoping Solar beta access request:",
+    "",
+    `Name: ${request.name}`,
+    `Company: ${request.company}`,
+    `Email: ${request.email}`,
+    `Role / Interest: ${request.role}`,
+    "",
+    "Message:",
+    request.message || "(No message provided)",
+    "",
+    "Note: This was submitted from the static landing page placeholder form."
+  ].join("\n");
+
+  return `mailto:BlakeParkison@outlook.com?subject=${encodeURIComponent("Scoping Solar Beta Access Request")}&body=${encodeURIComponent(body)}`;
+}
+
+const accessForm = document.getElementById("accessRequestForm");
+if (accessForm) {
+  const status = document.getElementById("accessFormStatus");
+
+  accessForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!accessForm.reportValidity()) return;
+
+    const data = new FormData(accessForm);
+    const request = {
+      id: `request_${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      name: String(data.get("name") || "").trim(),
+      company: String(data.get("company") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      role: String(data.get("role") || "").trim(),
+      message: String(data.get("message") || "").trim()
+    };
+
+    saveAccessRequest(request);
+    if (status) {
+      status.textContent = "Request captured locally for this browser and your email app should open next. App access is not granted automatically.";
+    }
+
+    window.location.href = betaRequestMailto(request);
+    accessForm.reset();
+  });
+}
+
+// Future backend integration: submit the request to an API, store it in a database,
+// and expose an owner/admin approval queue before granting beta app access.
 window.addEventListener("resize", () => {
   sizeCanvas();
   drawScene();

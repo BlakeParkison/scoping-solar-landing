@@ -100,13 +100,12 @@ p {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
   width: 38px;
   height: 38px;
   border-radius: var(--radius);
-  background: var(--solar);
-  color: #111827;
+  object-fit: contain;
+  background: var(--white);
+  padding: 3px;
   box-shadow: 0 12px 32px rgba(247, 183, 51, 0.28);
 }
 
@@ -443,6 +442,73 @@ h3 {
   margin-top: 0;
 }
 
+.access-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.access-form label {
+  display: grid;
+  gap: 7px;
+  color: #eef6ff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.access-form .full,
+.form-actions,
+.form-status {
+  grid-column: 1 / -1;
+}
+
+.access-form input,
+.access-form select,
+.access-form textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  background: rgba(7, 16, 29, 0.82);
+  color: var(--white);
+  padding: 12px 13px;
+  outline: none;
+}
+
+.access-form textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.access-form input:focus,
+.access-form select:focus,
+.access-form textarea:focus {
+  border-color: var(--solar);
+  box-shadow: 0 0 0 3px rgba(247, 183, 51, 0.18);
+}
+
+.access-form select option {
+  color: #111827;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.form-status {
+  min-height: 20px;
+  color: #d8e7f5;
+  font-size: 14px;
+}
+
 .footer {
   background: #050b14;
   color: #9fb2c4;
@@ -492,6 +558,10 @@ h3 {
 
   .cta-actions {
     justify-content: flex-start;
+  }
+
+  .access-form {
+    grid-template-columns: 1fr;
   }
 }
 
