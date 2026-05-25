@@ -2,6 +2,10 @@
 
 Static public landing page for `www.scopingsolar.com`.
 
+Permanent local folder after reorganization:
+
+`D:\PERSONAL\SCOPINGSOLAR.COM\website`
+
 The hosted beta app lives separately at `app.scopingsolar.com` and should be protected by Cloudflare Access. Public visitors should not be able to open the beta app directly from this page.
 
 ## Project Type
