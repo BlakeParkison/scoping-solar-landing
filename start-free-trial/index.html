@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08111f" />
+  <meta name="description" content="Start a private Scoping Solar free beta workspace." />
+  <title>Start Free Beta Trial | Scoping Solar</title>
+  <link rel="canonical" href="https://www.scopingsolar.com/start-free-trial" />
+  <link rel="icon" href="/scoping_solar_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/scoping_solar_icon.png" />
+  <link rel="stylesheet" href="/styles.css?v=0.12.0-private-beta-r1" />
+  <link rel="stylesheet" href="/private-beta.css?v=0.12.0-private-beta-r1" />
+</head>
+<body class="private-beta-page">
+  <a class="skip-link" href="#main">Skip to signup</a>
+
+  <header class="site-header" aria-label="Site header">
+    <nav class="nav" aria-label="Private beta navigation">
+      <a class="brand" href="/" aria-label="Scoping Solar home">
+        <img class="brand-mark" src="/scoping_solar_icon.png" alt="" aria-hidden="true" />
+        <span>Scoping Solar</span>
+      </a>
+      <div class="nav-actions beta-nav-actions">
+        <a href="/">Back to site</a>
+        <a class="nav-cta" href="https://app.scopingsolar.com">Log In</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="private-beta-main">
+    <section class="private-beta-intro" aria-labelledby="private-beta-title">
+      <p class="section-kicker">Invitation-only free beta</p>
+      <h1 id="private-beta-title">Scope one real project with your team.</h1>
+      <p class="private-beta-lead">
+        Start a private Scoping Solar workspace for guided solar and battery project intake.
+        Paid plans are not yet available.
+      </p>
+      <ul class="private-beta-facts" aria-label="Free beta summary">
+        <li><strong>30 days</strong><span>from verified workspace creation</span></li>
+        <li><strong>One project</strong><span>for the lifetime of the trial</span></li>
+        <li><strong>One seat</strong><span>Owner/Admin access</span></li>
+        <li><strong>No credit card</strong><span>no paid commitment</span></li>
+      </ul>
+      <p class="private-beta-retention">Your project remains preserved for supported read-only viewing after the trial ends.</p>
+    </section>
+
+    <section class="private-beta-form-band" aria-labelledby="signup-form-title">
+      <form id="privateBetaSignupForm" class="private-beta-form" novalidate>
+        <div class="private-beta-form-heading">
+          <p class="section-kicker">Create your workspace</p>
+          <h2 id="signup-form-title">Start Free Beta Trial</h2>
+          <p>Use the private invitation code supplied by Scoping Solar.</p>
+        </div>
+
+        <div class="private-beta-field full-field">
+          <label for="privateBetaAccessCode">Private beta access code</label>
+          <input
+            id="privateBetaAccessCode"
+            name="privateBetaAccessCode"
+            type="password"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            maxlength="128"
+            data-1p-ignore="true"
+            data-lpignore="true"
+            required
+          />
+        </div>
+
+        <div class="private-beta-form-grid">
+          <div class="private-beta-field">
+            <label for="firstName">First name</label>
+            <input id="firstName" name="firstName" type="text" autocomplete="given-name" maxlength="80" required />
+          </div>
+          <div class="private-beta-field">
+            <label for="lastName">Last name</label>
+            <input id="lastName" name="lastName" type="text" autocomplete="family-name" maxlength="80" required />
+          </div>
+          <div class="private-beta-field full-field">
+            <label for="companyName">Company name</label>
+            <input id="companyName" name="companyName" type="text" autocomplete="organization" maxlength="120" required />
+          </div>
+          <div class="private-beta-field full-field">
+            <label for="workEmail">Work email</label>
+            <input id="workEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="private-beta-field">
+            <label for="newPassword">Password</label>
+            <input id="newPassword" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required />
+          </div>
+          <div class="private-beta-field">
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required />
+          </div>
+        </div>
+
+        <label class="private-beta-consent">
+          <input id="termsAccepted" name="termsAccepted" type="checkbox" required />
+          <span>I accept the draft <a href="#beta-terms">Free Beta Terms</a>.</span>
+        </label>
+        <label class="private-beta-consent">
+          <input id="privacyAccepted" name="privacyAccepted" type="checkbox" required />
+          <span>I accept the draft <a href="#privacy-notice">Privacy Notice</a>.</span>
+        </label>
+
+        <p id="privateBetaStatus" class="private-beta-status" role="status" aria-live="polite"></p>
+        <div class="private-beta-actions">
+          <button id="privateBetaSubmit" class="button primary" type="submit">Start Free Beta Trial</button>
+          <a class="button secondary" href="https://app.scopingsolar.com">Already have an account? Log In</a>
+        </div>
+      </form>
+
+      <section id="privateBetaVerification" class="private-beta-verification" aria-labelledby="verification-title" hidden>
+        <p class="section-kicker">Verify your email</p>
+        <h2 id="verification-title">Check your inbox.</h2>
+        <p>
+          Open the new Scoping Solar verification email in this browser. The secure link will finish
+          your workspace and continue to the Scoping Solar application.
+        </p>
+        <p>The trial begins only after verification and workspace creation succeed.</p>
+        <a class="button secondary" href="https://app.scopingsolar.com">Return to Log In</a>
+      </section>
+    </section>
+
+    <section class="private-beta-legal-band" aria-label="Draft beta terms and privacy notice">
+      <article id="beta-terms">
+        <p class="section-kicker">Draft - review required</p>
+        <h2>Free Beta Terms</h2>
+        <p>
+          The beta lasts 30 calendar days after verified workspace creation and includes one project
+          ever created by the trial organization. Deleting or archiving the project does not restore
+          the allowance. Beta software may change or be unavailable, and no uptime guarantee is made.
+        </p>
+        <p>
+          No subscription is being purchased. You are responsible for authorized uploaded content.
+          Access may be suspended for abuse. Data remains preserved after expiration for supported
+          read-only viewing and export. This draft is not legal advice or a substitute for attorney review.
+        </p>
+      </article>
+      <article id="privacy-notice">
+        <p class="section-kicker">Draft - review required</p>
+        <h2>Privacy Notice</h2>
+        <p>
+          Scoping Solar uses account, organization, project, and uploaded-content information to provide
+          the beta, secure company workspaces, synchronize projects, and investigate reliability or abuse.
+        </p>
+        <p>
+          Trial data is retained after expiration rather than automatically deleted. Security records use
+          limited derived signals and sanitized audit events. Contact support@scopingsolar.com with account
+          or privacy questions. This draft is not legal advice or a substitute for attorney review.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="section-inner footer-content">
+      <p class="footer-brand-links"><span>Scoping Solar</span></p>
+      <p>Invitation-only free beta. Paid plans are not yet available.</p>
+      <p><a class="private-beta-login-link" href="https://app.scopingsolar.com">Log In</a></p>
+    </div>
+  </footer>
+
+  <script src="/private-beta.js?v=0.12.0-private-beta-r1" defer></script>
+</body>
+</html>

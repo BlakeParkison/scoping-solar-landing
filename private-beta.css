@@ -1,0 +1,263 @@
+.private-beta-page {
+  background: #f4f7fa;
+  color: #101827;
+}
+
+.private-beta-main {
+  padding-top: 74px;
+}
+
+.private-beta-intro {
+  min-height: 500px;
+  padding: 92px max(24px, calc((100% - 1160px) / 2)) 76px;
+  background: #08111f;
+  color: #ffffff;
+}
+
+.private-beta-intro h1 {
+  max-width: 780px;
+  margin: 10px 0 20px;
+  font-size: 62px;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.private-beta-lead {
+  max-width: 720px;
+  color: #cbd5e1;
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.private-beta-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 980px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+  background: #263247;
+  border: 1px solid #263247;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.private-beta-facts li {
+  display: grid;
+  gap: 7px;
+  min-height: 112px;
+  padding: 22px;
+  background: #101d2d;
+}
+
+.private-beta-facts strong {
+  color: #f7b733;
+  font-size: 18px;
+}
+
+.private-beta-facts span,
+.private-beta-retention {
+  color: #aebbd0;
+  line-height: 1.5;
+}
+
+.private-beta-retention {
+  max-width: 760px;
+  margin: 20px 0 0;
+}
+
+.private-beta-form-band {
+  display: grid;
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+  padding: 72px 24px;
+  background: #eef3f7;
+}
+
+.private-beta-form,
+.private-beta-verification {
+  padding: 34px;
+  border: 1px solid #ccd7e2;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(8, 17, 31, 0.1);
+}
+
+.private-beta-form-heading h2,
+.private-beta-verification h2,
+.private-beta-legal-band h2 {
+  margin: 6px 0 10px;
+  color: #101827;
+  font-size: 32px;
+  letter-spacing: 0;
+}
+
+.private-beta-form-heading > p:last-child,
+.private-beta-verification p,
+.private-beta-legal-band p {
+  color: #45566a;
+  line-height: 1.65;
+}
+
+.private-beta-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.private-beta-field {
+  display: grid;
+  gap: 8px;
+}
+
+.private-beta-field.full-field {
+  grid-column: 1 / -1;
+}
+
+.private-beta-field > label {
+  color: #172235;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.private-beta-field > input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #aebdcb;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #101827;
+  padding: 11px 12px;
+  font: inherit;
+  outline: none;
+}
+
+.private-beta-field > input:focus {
+  border-color: #0a6f92;
+  box-shadow: 0 0 0 3px rgba(10, 111, 146, 0.18);
+}
+
+.private-beta-form > .full-field {
+  margin-top: 24px;
+}
+
+.private-beta-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.private-beta-consent input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.private-beta-consent a,
+.private-beta-login-link {
+  color: #08688a;
+  font-weight: 700;
+}
+
+.private-beta-status {
+  min-height: 24px;
+  margin: 20px 0 0;
+  color: #8a4b00;
+  font-weight: 650;
+}
+
+.private-beta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.private-beta-verification {
+  text-align: left;
+}
+
+.private-beta-legal-band {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  padding: 72px max(24px, calc((100% - 1160px) / 2));
+  background: #ffffff;
+}
+
+.private-beta-legal-band article {
+  scroll-margin-top: 100px;
+}
+
+.private-beta-login-link:focus-visible {
+  outline: 3px solid #75d7ff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .private-beta-intro h1 {
+    font-size: 48px;
+  }
+
+  .private-beta-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .private-beta-main {
+    padding-top: 66px;
+  }
+
+  .beta-nav-actions a:first-child {
+    display: none;
+  }
+
+  .private-beta-intro {
+    min-height: auto;
+    padding: 56px 18px 58px;
+  }
+
+  .private-beta-intro h1 {
+    font-size: 38px;
+  }
+
+  .private-beta-lead {
+    font-size: 17px;
+  }
+
+  .private-beta-facts,
+  .private-beta-form-grid,
+  .private-beta-legal-band {
+    grid-template-columns: 1fr;
+  }
+
+  .private-beta-form-band {
+    padding: 42px 14px;
+  }
+
+  .private-beta-form,
+  .private-beta-verification {
+    padding: 24px 18px;
+  }
+
+  .private-beta-actions {
+    display: grid;
+  }
+
+  .private-beta-legal-band {
+    gap: 42px;
+    padding: 54px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
