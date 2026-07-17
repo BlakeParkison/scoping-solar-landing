@@ -1,4 +1,4 @@
-const PRIVATE_BETA_VERSION = "0.12.0-cross-device-confirmation-r1";
+const PRIVATE_BETA_VERSION = "0.12.0-cross-device-confirmation-r2";
 const PRIVATE_BETA_SIGNUP_ENDPOINT = "/api/trial/signup";
 
 function privateBetaRequestId() {
@@ -15,15 +15,28 @@ if (privateBetaForm) {
   const status = document.getElementById("privateBetaStatus");
   const submit = document.getElementById("privateBetaSubmit");
   const verification = document.getElementById("privateBetaVerification");
+  const accessCodeField = privateBetaForm.elements.namedItem("privateBetaAccessCode");
+  const passwordField = privateBetaForm.elements.namedItem("password");
+  const confirmPasswordField = privateBetaForm.elements.namedItem("confirmPassword");
   let submitting = false;
+
+  const showVerificationStage = () => {
+    if (accessCodeField) accessCodeField.value = "";
+    if (passwordField) passwordField.value = "";
+    if (confirmPasswordField) confirmPasswordField.value = "";
+    privateBetaForm.hidden = true;
+    verification.hidden = false;
+    verification.focus?.();
+  };
+
+  if (new URLSearchParams(window.location.search).get("stage") === "verify") {
+    showVerificationStage();
+  }
 
   privateBetaForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (submitting || !privateBetaForm.reportValidity()) return;
 
-    const accessCodeField = privateBetaForm.elements.namedItem("privateBetaAccessCode");
-    const passwordField = privateBetaForm.elements.namedItem("password");
-    const confirmPasswordField = privateBetaForm.elements.namedItem("confirmPassword");
     const password = String(passwordField?.value || "");
     const confirmPassword = String(confirmPasswordField?.value || "");
     if (password !== confirmPassword) {
@@ -62,9 +75,7 @@ if (privateBetaForm) {
       if (!response.ok) throw new Error(result?.error || "Unable to start the private beta trial. Check your invitation details and try again.");
       if (passwordField) passwordField.value = "";
       if (confirmPasswordField) confirmPasswordField.value = "";
-      privateBetaForm.hidden = true;
-      verification.hidden = false;
-      verification.focus?.();
+      showVerificationStage();
       history.replaceState(null, document.title, "/start-free-trial?stage=verify");
     } catch (error) {
       if (passwordField) passwordField.value = "";

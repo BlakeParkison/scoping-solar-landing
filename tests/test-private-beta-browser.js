@@ -71,6 +71,11 @@ async function testViewport(browser, name, viewport) {
   await assertNoOverflow(page, `${name} signup`);
   await page.screenshot({ path: path.join(evidenceDirectory, `v0.12.0-private-beta-signup-${name}.png`), fullPage: true });
 
+  await page.goto(`${landingOrigin}/start-free-trial/?stage=verify`, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "Check your inbox." }).waitFor();
+  if (await page.locator('#privateBetaSignupForm:visible').count()) throw new Error(`${name}: verification-stage reload exposed the signup form again.`);
+  if (await page.locator('input[type="password"]:visible').count()) throw new Error(`${name}: verification-stage reload exposed secret fields.`);
+
   await page.goto(`${appOrigin}/`, { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "Log in to Scoping Solar." }).waitFor();
   const signupLink = page.getByRole("link", { name: /Start your free trial/i });
@@ -106,7 +111,7 @@ async function main() {
   } finally {
     await browser.close();
   }
-  console.log("Passed 20/20 private-beta Chromium landing/app checks.");
+  console.log("Passed 22/22 private-beta Chromium landing/app checks.");
   console.log(`Sanitized evidence: ${evidenceDirectory}`);
 }
 
