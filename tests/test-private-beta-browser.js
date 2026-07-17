@@ -35,10 +35,14 @@ async function testViewport(browser, name, viewport) {
   const context = await browser.newContext({ viewport });
   const page = await context.newPage();
   const errors = [];
+  let verificationRequests = 0;
   page.on("console", message => {
     if (message.type() === "error") errors.push(message.text());
   });
   page.on("pageerror", error => errors.push(error.message));
+  page.on("request", request => {
+    if (/\/auth\/v1\/verify(?:\?|$)/.test(request.url())) verificationRequests += 1;
+  });
 
   await page.goto(`${landingOrigin}/`, { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "Solar & Battery Scoping, Built for the Real Workflow" }).waitFor();
@@ -74,9 +78,16 @@ async function testViewport(browser, name, viewport) {
   if (signupDestination !== `${landingOrigin}/start-free-trial`) throw new Error(`${name}: app login does not link to the landing signup.`);
   if (await page.getByLabel("Private beta access code").count()) throw new Error(`${name}: the full signup form leaked into the app login.`);
 
+  await page.goto(`${appOrigin}/beta/verify-email#token_hash=fixture_token_hash_abcdefghijklmnopqrstuvwxyz_0123456789&type=email`, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "Confirm your email." }).waitFor();
+  await page.getByRole("button", { name: "Confirm email and continue" }).waitFor();
+  if (new URL(page.url()).hash) throw new Error(`${name}: verification token remained in browser history.`);
+  if (verificationRequests !== 0) throw new Error(`${name}: loading the verification page consumed the token before a click.`);
+  await assertNoOverflow(page, `${name} cross-device confirmation`);
+
   await page.goto(`${appOrigin}/beta/callback`, { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "Finishing your account." }).waitFor();
-  await page.getByText("The verification link is missing its one-time code.").waitFor();
+  await page.getByText(/earlier verification link cannot establish a session/i).waitFor();
   const restartDestination = await page.getByRole("link", { name: "Start again" }).getAttribute("href");
   if (restartDestination !== `${landingOrigin}/start-free-trial`) throw new Error(`${name}: callback recovery does not return to the landing signup.`);
   await assertNoOverflow(page, `${name} callback`);
@@ -95,7 +106,7 @@ async function main() {
   } finally {
     await browser.close();
   }
-  console.log("Passed 18/18 private-beta Chromium landing/app checks.");
+  console.log("Passed 20/20 private-beta Chromium landing/app checks.");
   console.log(`Sanitized evidence: ${evidenceDirectory}`);
 }
 

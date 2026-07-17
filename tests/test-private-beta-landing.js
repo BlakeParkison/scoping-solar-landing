@@ -35,9 +35,9 @@ check("Turnstile is absent only from this invitation-only customer flow", !/turn
 check("duplicate form submission is blocked", script.includes("if (submitting") && script.includes("submit.disabled = true"));
 check("generic server errors do not enumerate accounts", !/already exists|email exists|registered account/i.test(signup + script));
 check("draft terms and privacy disclosures remain visible", ["Draft - review required", "Free Beta Terms", "Privacy Notice", "not legal advice"].every(text => signup.includes(text)));
-check("verification instructions target the production app", signup.includes("secure link will finish") && signup.includes("https://app.scopingsolar.com"));
+check("verification instructions support another device and target the production app", signup.includes("any device or supported browser") && signup.includes("Confirm email and continue") && signup.includes("https://app.scopingsolar.com"));
 check("signup never places the beta code in a URL", !/privateBetaAccessCode[^\n]*(?:searchParams|location|href)|[?&](?:code|access_code)=/i.test(script));
-check("fresh landing assets are immutable by identity", ["0.12.0-private-beta-r1", "private-beta.js", "private-beta.css"].every(text => home.includes(text) || signup.includes(text)) && headers.includes("max-age=31536000, immutable"));
+check("fresh landing assets are immutable by identity", ["0.12.0-cross-device-confirmation-r1", "private-beta.js", "private-beta.css"].every(text => home.includes(text) || signup.includes(text)) && headers.includes("max-age=31536000, immutable"));
 check("responsive signup styles avoid viewport-overflow layouts", betaStyles.includes("@media (max-width: 640px)") && betaStyles.includes("grid-template-columns: 1fr"));
 check("landing CSP permits only same-origin signup API calls", /connect-src 'self'/.test(headers) && !/connect-src[^;]*workers\.dev/.test(headers));
 

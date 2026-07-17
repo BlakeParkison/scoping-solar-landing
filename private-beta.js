@@ -1,4 +1,4 @@
-const PRIVATE_BETA_VERSION = "0.12.0-private-beta-r1";
+const PRIVATE_BETA_VERSION = "0.12.0-cross-device-confirmation-r1";
 const PRIVATE_BETA_SIGNUP_ENDPOINT = "/api/trial/signup";
 
 function privateBetaRequestId() {
