@@ -9,7 +9,7 @@ const PAYLOAD_ASSETS = [
   "app.js",
   "index.html",
   "private-beta.css",
-  "private-beta.js",
+  "private-beta.v0.12.0-r2.js",
   "scoping_solar_icon.png",
   "start-free-trial/index.html",
   "styles.css"
@@ -96,7 +96,7 @@ function verifyPayload(directory, sha) {
   }
   const home = fs.readFileSync(path.join(directory, "index.html"), "utf8");
   const signup = fs.readFileSync(path.join(directory, "start-free-trial", "index.html"), "utf8");
-  const script = fs.readFileSync(path.join(directory, "private-beta.js"), "utf8");
+  const script = fs.readFileSync(path.join(directory, "private-beta.v0.12.0-r2.js"), "utf8");
   if (!home.includes('href="/start-free-trial"')) fail("The private-beta footer route is missing.");
   if (!signup.includes('name="privateBetaAccessCode"')) fail("The invitation-code field is missing.");
   if (!script.includes('PRIVATE_BETA_SIGNUP_ENDPOINT = "/api/trial/signup"')) fail("The same-origin signup endpoint is missing.");

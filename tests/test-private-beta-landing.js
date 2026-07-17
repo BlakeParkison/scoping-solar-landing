@@ -5,6 +5,7 @@ const root = path.join(__dirname, "..");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const signup = fs.readFileSync(path.join(root, "start-free-trial", "index.html"), "utf8");
 const script = fs.readFileSync(path.join(root, "private-beta.js"), "utf8");
+const versionedScript = fs.readFileSync(path.join(root, "private-beta.v0.12.0-r2.js"), "utf8");
 const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 const betaStyles = fs.readFileSync(path.join(root, "private-beta.css"), "utf8");
 const headers = fs.readFileSync(path.join(root, "_headers"), "utf8");
@@ -37,7 +38,8 @@ check("generic server errors do not enumerate accounts", !/already exists|email 
 check("draft terms and privacy disclosures remain visible", ["Draft - review required", "Free Beta Terms", "Privacy Notice", "not legal advice"].every(text => signup.includes(text)));
 check("verification instructions support another device and target the production app", signup.includes("any device or supported browser") && signup.includes("Confirm email and continue") && signup.includes("https://app.scopingsolar.com"));
 check("signup never places the beta code in a URL", !/privateBetaAccessCode[^\n]*(?:searchParams|location|href)|[?&](?:code|access_code)=/i.test(script));
-check("fresh landing assets are immutable by identity", ["0.12.0-cross-device-confirmation-r2", "private-beta.js", "private-beta.css"].every(text => home.includes(text) || signup.includes(text)) && headers.includes("max-age=31536000, immutable"));
+check("fresh landing assets are immutable by identity", ["0.12.0-cross-device-confirmation-r2", "private-beta.v0.12.0-r2.js", "private-beta.css"].every(text => home.includes(text) || signup.includes(text)) && headers.includes("max-age=31536000, immutable"));
+check("canonical and immutable signup runtimes are byte-identical", script === versionedScript);
 check("verification-stage reload restores inbox guidance without secret fields", script.includes('get("stage") === "verify"') && script.includes("showVerificationStage()") && script.includes('accessCodeField.value = ""') && script.includes('passwordField.value = ""') && script.includes('confirmPasswordField.value = ""'));
 check("responsive signup styles avoid viewport-overflow layouts", betaStyles.includes("@media (max-width: 640px)") && betaStyles.includes("grid-template-columns: 1fr"));
 check("landing CSP permits only same-origin signup API calls", /connect-src 'self'/.test(headers) && !/connect-src[^;]*workers\.dev/.test(headers));

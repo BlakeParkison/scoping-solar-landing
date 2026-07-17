@@ -6,7 +6,7 @@ const root = path.join(__dirname, "..");
 const builder = fs.readFileSync(path.join(root, "tools", "build-private-beta-landing-payload.js"), "utf8");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const signup = fs.readFileSync(path.join(root, "start-free-trial", "index.html"), "utf8");
-const script = fs.readFileSync(path.join(root, "private-beta.js"), "utf8");
+const script = fs.readFileSync(path.join(root, "private-beta.v0.12.0-r2.js"), "utf8");
 
 let passed = 0;
 const failures = [];
