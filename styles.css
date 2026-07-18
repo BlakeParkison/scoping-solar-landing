@@ -584,6 +584,35 @@ h3 {
   font-size: 14px;
 }
 
+.footer-brand-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.footer-brand-links > span {
+  color: #75d7ff;
+}
+
+.private-beta-footer-link {
+  color: #07101d;
+  text-decoration: none;
+  border-radius: 3px;
+  outline: none;
+  transition: color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.private-beta-footer-link:hover {
+  color: #9fb2c4;
+}
+
+.private-beta-footer-link:focus-visible {
+  color: #d8e7f5;
+  background: #101d2d;
+  box-shadow: 0 0 0 3px rgba(117, 215, 255, 0.52);
+}
+
 @media (max-width: 900px) {
   .nav {
     min-height: 66px;

@@ -1,4 +1,4 @@
-const LANDING_VERSION = "0.9.5.5";
+const LANDING_VERSION = "0.12.0-private-beta-r1";
 console.log(`Scoping Solar Landing v${LANDING_VERSION} loaded`);
 const canvas = document.getElementById("heroCanvas");
 const context = canvas.getContext("2d");
