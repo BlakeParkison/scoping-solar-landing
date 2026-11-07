@@ -736,3 +736,165 @@ h3 {
     transition: none;
   }
 }
+
+/* LP-01 is homepage-only; the signup route keeps its existing palette. */
+:root.landing-baseline {
+  color-scheme: light;
+  --ink: #ffffff;
+  --navy: #ffffff;
+  --panel: #ffffff;
+  --panel-soft: #ffffff;
+  --text: #000000;
+  --soft: #000000;
+  --muted: #000000;
+  --solar: #000000;
+  --cyan: #000000;
+  --green: #e5e5e5;
+  --line: #b3b3b3;
+  --line-dark: #b3b3b3;
+  --control: #f2f2f2;
+  --control-hover: #e5e5e5;
+  --control-active: #d6d6d6;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.landing-baseline .site-header {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: var(--line);
+}
+
+.landing-baseline .hero,
+.landing-baseline .hero-overlay,
+.landing-baseline .notice-band,
+.landing-baseline .problem-section,
+.landing-baseline .features-section,
+.landing-baseline .updates-section,
+.landing-baseline .cta-section,
+.landing-baseline .footer {
+  background: var(--white);
+  color: var(--text);
+}
+
+.landing-baseline #heroCanvas {
+  visibility: hidden;
+}
+
+.landing-baseline .brand-mark {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.landing-baseline .beta-pill,
+.landing-baseline .section-kicker,
+.landing-baseline .nav-actions .nav-cta,
+.landing-baseline .update-note {
+  background: var(--control);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.landing-baseline .notice-content strong,
+.landing-baseline .notice-content p,
+.landing-baseline .info-panel p,
+.landing-baseline .feature-card p,
+.landing-baseline .dark-lead,
+.landing-baseline .update-card-head,
+.landing-baseline .update-list,
+.landing-baseline .process-step span,
+.landing-baseline .cta-layout p,
+.landing-baseline .access-form label,
+.landing-baseline .footer-brand-links > span,
+.landing-baseline .private-beta-footer-link,
+.landing-baseline .access-form select option {
+  color: var(--text);
+}
+
+.landing-baseline .info-panel,
+.landing-baseline .feature-card,
+.landing-baseline .update-card {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.07);
+}
+
+.landing-baseline .button.primary {
+  background: var(--control);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--text), 0 16px 34px rgba(0, 0, 0, 0.08);
+}
+
+.landing-baseline .button.secondary,
+.landing-baseline .button.quiet {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.landing-baseline .access-form,
+.landing-baseline .access-form input,
+.landing-baseline .access-form select,
+.landing-baseline .access-form textarea {
+  background: var(--white);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.landing-baseline .access-form input::placeholder,
+.landing-baseline .access-form textarea::placeholder {
+  color: var(--text);
+  opacity: 1;
+}
+
+.landing-baseline a:not(.button):not(.brand):not(.nav-cta) {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.landing-baseline .button:hover,
+.landing-baseline .nav-actions a:hover,
+.landing-baseline .private-beta-footer-link:hover {
+  background: var(--control-hover);
+  color: var(--text);
+}
+
+.landing-baseline .button:active,
+.landing-baseline .nav-actions a:active {
+  background: var(--control-active);
+  color: var(--text);
+}
+
+.landing-baseline a:focus-visible,
+.landing-baseline button:focus-visible,
+.landing-baseline input:focus-visible,
+.landing-baseline select:focus-visible,
+.landing-baseline textarea:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  color: var(--text);
+}
+
+.landing-baseline .private-beta-footer-link:focus-visible,
+.landing-baseline .nav-actions a:focus-visible {
+  background: var(--control-hover);
+  box-shadow: 0 0 0 3px var(--control-active);
+}
+
+.landing-baseline .access-form input:focus,
+.landing-baseline .access-form select:focus,
+.landing-baseline .access-form textarea:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px var(--control-active);
+}
+
+.landing-baseline .button:disabled,
+.landing-baseline .access-form input:disabled,
+.landing-baseline .access-form select:disabled,
+.landing-baseline .access-form textarea:disabled {
+  background: var(--control-active);
+  color: var(--text);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.landing-baseline .skip-link {
+  background: var(--control);
+  color: var(--text);
+}
