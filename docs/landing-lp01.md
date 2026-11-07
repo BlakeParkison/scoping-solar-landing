@@ -1,6 +1,33 @@
 # LP-01: White / Black Landing Baseline
 
-Date: 2026-11-06. Status: source complete; local commit only; Blake visual acceptance deferred.
+## Current publication - 2026-11-07
+
+LP01 published under explicit coordinated private-beta delivery authorization.
+Branch:release/private-beta-lp01-20261107. Frozen published source:
+c22ea8140cb1b744491482ea259dec83b2c17dd6 (includes56a44d0 LP01).
+Production:https://www.scopingsolar.com/ and https://scopingsolar.com/.
+Pages deployment:19dc46a0-dbbb-449b-af01-4dbfec6fd249.
+Prior deployment for rollback:b8c0ce24-6079-4e77-b3c3-0fae185b4cbe,
+source8d3357df1068d4513556667ce402c5ea3742befa.
+
+Existing Pages metadata verified Git deployments/previews disabled; curated CLI
+production deployment did not require a main merge or hosting-policy modification.
+Minimal factual status copy now reflects invitation-only web review and Android
+validation pending. Historical changelog dates unchanged. Palette/layout/form
+behavior unchanged. Existing21+12+9 checks rerun and pass; actual live1440/390px
+white/black/images/layout/focus/signup-navigation checks pass. Screenshots inspected.
+Existing Cloudflare email obfuscation transforms only known email markup; normalized
+HTML and other public asset bytes match the curated source. No form submitted.
+Blake visual/functional acceptance is still deferred.
+
+Coordinated report/receipt reside in OneDrive/Desktop/Scoping Solar/Project Documents/
+PRIVATE-BETA-DELIVERY-20261107.md and PRIVATE-BETA-DELIVERY-20261107-RECEIPT.json.
+Application and landing repositories/commits are separate. No backend/auth change,
+public signup, customer data, APK link on landing, or main merge.
+
+## Historical source-only checkpoint
+
+Date: 2026-11-06. Then-status: source complete; local commit only; Blake visual acceptance deferred.
 
 ## Source and Publication Boundary
 
