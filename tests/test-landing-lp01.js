@@ -10,6 +10,11 @@ const evidence = process.env.LP01_EVIDENCE_DIR || path.resolve(root, "../lp01-ev
 const read = file => fs.readFileSync(path.join(root, file));
 const old = file => execFileSync("git", ["show", base + ":" + file], { cwd: root });
 const normalized = value => value.toString().replace(/\r\n/g, "\n");
+// Compare the palette against the same explicitly authorized release-status copy.
+const releaseCopy = text => text
+  .replace('The beta app is currently restricted to the owner/admin while the workflow, field language,', 'The beta app is invitation-only while the workflow, field language,')
+  .replace('Full web access, mobile access, downloadable app access, saved projects, team accounts,\n            and cloud syncing are coming soon.', 'Web surveys, saved projects, team accounts and cloud sync are available to invited testers.\n            Android owner review and device validation remain pending; public access is not open.')
+  .replace('Latest web build v0.12.0', 'Web review: Catalog V1. Android validation pending.');
 let passed = 0;
 async function test(name, fn) {
   await fn();
@@ -23,7 +28,7 @@ async function main() {
       .replace(' class="landing-baseline"', "")
       .replace('content="#FFFFFF"', 'content="#08111f"')
       .replace("styles.css?v=lp01-white-black-r1", "styles.css?v=0.12.0-cross-device-confirmation-r2");
-    assert.equal(home, normalized(old("index.html")));
+    assert.equal(home, releaseCopy(normalized(old("index.html"))));
     const css = normalized(read("styles.css")), before = normalized(old("styles.css"));
     assert.ok(css.startsWith(before));
     assert.doesNotMatch(css.slice(before.length), /!important|\*\s*[{,]|filter\s*:/);
@@ -61,7 +66,8 @@ async function main() {
         const file = url.pathname === "/" ? "index.html" :
           /^\/start-free-trial\/?$/.test(url.pathname) ? "start-free-trial/index.html" : url.pathname.slice(1);
         if (!PAYLOAD_ASSETS.includes(file)) return route.abort();
-        await route.fulfill({ body: prior ? old(file) : read(file),
+        const body = prior && file === "index.html" ? releaseCopy(normalized(old(file))) : prior ? old(file) : read(file);
+        await route.fulfill({ body,
           contentType: file.endsWith(".css") ? "text/css" : file.endsWith(".js") ? "application/javascript" :
             file.endsWith(".png") ? "image/png" : "text/html" });
       });
@@ -165,7 +171,7 @@ async function main() {
         const a = await mount(true, 390, dark, false, true), b = await mount(false, 390, dark, false, true);
         const styles = page => page.evaluate(() => [...document.querySelectorAll("*")].map(e => {
           const s = getComputedStyle(e);
-          return Array.from(s).map(key => [key, s.getPropertyValue(key)]);
+          return Array.from(s).sort().map(key => [key, s.getPropertyValue(key)]);
         }));
         try {
           assert.deepEqual(await styles(b.page), await styles(a.page));
